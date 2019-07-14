@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CrystalsCollector Game</title>
+
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <h1> CrystalsCollector</h1>
+
+    <button id="button-1">first</button>
+    <button id="button-2">second</button>
+    <button id="button-3">third</button>
+    <button id="button-4">four</button>
+
+    <script>
+
+        //player random number at the start of the game
+        // Math.floor( Math.random () * (max - min + 1)) + min)
+
+        function randomNum(min, max) {
+            // return Math.floor( Math.random()*(12-1+1) ) +1 ; 1-12
+            // return Math.floor( Math.random()*(12-2+1) ) +2 ; 2-12
+            return Math.floor(Math.random() * (max - min + 1)) + min; //2-10
+        }
+
+        // var x = randomNum(2,12); // save result
+        var buttonOne = randomNum(2, 12);
+        var buttonTwo = randomNum(2, 12);
+        var buttonThree = randomNum(2, 12);
+        var buttonFour = randomNum(2, 12);
+        var guessNumber = randomNum(19, 120);
+
+        console.log("buttonOne", buttonOne);
+        console.log("buttonTwo", buttonTwo);
+        console.log("buttonThree", buttonThree);
+        console.log("buttonFour", buttonFour);
+        console.log(guessNumber);
+
+        var bOne = $('button').eq(0);
+        var bTwo = $('button').eq(1);
+        var bThree = $('button').eq(2);
+        var bFour = $('button').eq(3);
+
+        var counter = 0;
+
+        bOne.on('click', function () {
+
+            counter = counter + buttonOne;
+            console.log(counter);
+            // console.log('hi');
+        })
+
+        bTwo.on('click', function () {
+            counter = counter + buttonTwo;
+            console.log(counter);
+            // console.log('bye');
+        })
+
+        bThree.on('click', function () {
+            counter = counter + buttonThree;
+            console.log(counter);
+            // console.log('hello');
+        })
+        bFour.on('click', function () {
+            counter = counter + buttonFour;
+            console.log(counter);
+            // console.log('hey');
+        })
+
+
+        // $('#button-1').on('click', function() {
+        //     counter = counter + buttonOne;
+        //     console.log(counter);
+        // });
+
+        // $('#button-2').on('click', function() {
+        //     ounter = counter + buttonTwo;
+        //     console.log(counter);
+        // });
+
+        // $('#button-3').on('click', function() {
+        //     ounter = counter + buttonThree;
+        //     console.log(counter);
+        // });
+
+        // $('#button-4').on('click', function() {
+        //     ounter = counter + buttonFour;
+        //     console.log(counter);
+        // });
+
+    </script>
+</body>
+
+</html>
