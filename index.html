@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CrystalsCollector Game</title>
-    <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Monoton|Share+Tech+Mono&display=swap" rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css?family=Monoton|Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -16,8 +15,6 @@
 </head>
 
 <body>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
     <div id="container-fluid">
         <div class="p-3 mb-2 bg-info text-white">
@@ -46,8 +43,8 @@
                 <img src="https://lh3.googleusercontent.com/bwIYxk7iOHb52EuVHft0KOzmHBNljp0XTgcby8GG_RMwuBsjXXN53ok5W7xHTKdeTJbi9CxR9_rfWUPNYv31hGB8sDkEn_a__3P_tx68-dXzMcfPAFvWw1GFH7qbrtwQWW_McFE5Cw=s308-p-k"
                     class="border border-secondary img-responsive" alt="diamondViolet" data-type="violet">
             </div>
-                <p>Wins: <span id="wins"></span></p>
-                <p>Losses: <span id="losses"></span></p>
+            <p>Wins: <span id="wins"></span></p>
+            <p>Losses: <span id="losses"></span></p>
 
         </div>
 
@@ -55,6 +52,9 @@
         <button id="button-2">second</button>
         <button id="button-3">third</button>
         <button id="button-4">four</button>
+    </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
         <script>
 
@@ -86,7 +86,7 @@
             var bFour = $('button').eq(3);
 
             var counter = 0;
-            
+
             //Player starts random number when they cilcks the button
             bOne.on('click', function () {
 
@@ -117,10 +117,10 @@
             $('#wins').text(wins);
             $('#losses').text(losses);
 
-          $('img').on('click', function(){
-              var dataType = $(this).attr('data-type');
-              console.log(dataType)
-          })  
+            $('img').on('click', function () {
+                var dataType = $(this).attr('data-type');
+                console.log(dataType)
+            })
         // $('#button-1').on('click', function() {
         //     counter = counter + buttonOne;
         //     console.log(counter);
@@ -141,7 +141,7 @@
         //     console.log(counter);
         // });
 
-        
+
         //When clicking any crystals, it should adding with the previuos result 
         //until it is equals the random result
 
