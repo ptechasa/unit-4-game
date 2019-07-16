@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CrystalsCollector Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Monoton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Monoton|Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
@@ -13,69 +19,108 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-    <h1> CrystalsCollector</h1>
+    <div id="container-fluid">
+        <div class="p-3 mb-2 bg-info text-white">
+            <h1> Crystals Collector</h1>
+        </div>
 
-    <button id="button-1">first</button>
-    <button id="button-2">second</button>
-    <button id="button-3">third</button>
-    <button id="button-4">four</button>
+        <div id="howToPlay">
+            <p>You will be given a random number at the start of the game.</p>
+            <p>There are you crystals below. By clicking on a crystal, you will add a specific amount of points to your
+                total score.</p>
+            <p>You win the game by matching your total score to random number, you lose the game if your total score
+                goes
+                above the random number.</p>
+            <p>The value of each crystal is hidden from you until you click on it.</p>
+            <p>Each time when the game starts, the game will change the values of each crystal.</p>
+        </div>
 
-    <script>
+        <div id="diamondImg">
+            <div class="col-sm-12 text-center">
+                <img src="https://lh3.googleusercontent.com/V1phnhdIFxAMij69-4BuBmGHbFico0DzeWdN6Zl8OElsfGRGCx_5GYwNdLswdNKeaWHph_-dpRTfdTWuP4EMvzLafixa3SrZEfEEfaHXgehvB-s3fQXcM74DuwhddDPn2brvqGLnuA=s308-p-k"
+                    class="border border-primary img-responsive" alt="diamondBlue" data-type="blue">
+                <img src="https://lh3.googleusercontent.com/Rb7hyTsPFKgXBSmaqVO658QjU1ZKF6xz0TLgimY3ihNx_B-YHXEHWeU7txhSybtAWbhP3Oj-4Jl8FpHj7RCUNHF4MHh3x44PtDO7DTA2fDxCVnOtG07rN9bEVU2iqxnjq8MCV8giZA=s308-p-k"
+                    class="border border-success img-responsive" alt="diamondGreen" data-type="green">
+                <img src="https://lh3.googleusercontent.com/YKHRPXM-7BZfhUvWEzb6MdLCRVFmS9U16J7bWAsCg3E0B_uX0jUjt2rFt8ku17te3YlothpJjmuen63fgh4jIUeh4q3MttLocRlJRwHOisjdv7EyL2VuGdNLzYFFrQZR12soonAi8A=s308-p-k"
+                    class="border border-warning img-responsive" alt="diamondYellow" data-type="yellow">
+                <img src="https://lh3.googleusercontent.com/bwIYxk7iOHb52EuVHft0KOzmHBNljp0XTgcby8GG_RMwuBsjXXN53ok5W7xHTKdeTJbi9CxR9_rfWUPNYv31hGB8sDkEn_a__3P_tx68-dXzMcfPAFvWw1GFH7qbrtwQWW_McFE5Cw=s308-p-k"
+                    class="border border-secondary img-responsive" alt="diamondViolet" data-type="violet">
+            </div>
+                <p>Wins: <span id="wins"></span></p>
+                <p>Losses: <span id="losses"></span></p>
 
-        //player random number at the start of the game
-        // Math.floor( Math.random () * (max - min + 1)) + min)
+        </div>
 
-        function randomNum(min, max) {
-            // return Math.floor( Math.random()*(12-1+1) ) +1 ; 1-12
-            // return Math.floor( Math.random()*(12-2+1) ) +2 ; 2-12
-            return Math.floor(Math.random() * (max - min + 1)) + min; //2-10
-        }
+        <button id="button-1">first</button>
+        <button id="button-2">second</button>
+        <button id="button-3">third</button>
+        <button id="button-4">four</button>
 
-        // var x = randomNum(2,12); // save result
-        var buttonOne = randomNum(2, 12);
-        var buttonTwo = randomNum(2, 12);
-        var buttonThree = randomNum(2, 12);
-        var buttonFour = randomNum(2, 12);
-        var guessNumber = randomNum(19, 120);
-
-        console.log("buttonOne", buttonOne);
-        console.log("buttonTwo", buttonTwo);
-        console.log("buttonThree", buttonThree);
-        console.log("buttonFour", buttonFour);
-        console.log(guessNumber);
-
-        var bOne = $('button').eq(0);
-        var bTwo = $('button').eq(1);
-        var bThree = $('button').eq(2);
-        var bFour = $('button').eq(3);
-
-        var counter = 0;
-
-        bOne.on('click', function () {
-
-            counter = counter + buttonOne;
-            console.log(counter);
-            // console.log('hi');
-        })
-
-        bTwo.on('click', function () {
-            counter = counter + buttonTwo;
-            console.log(counter);
-            // console.log('bye');
-        })
-
-        bThree.on('click', function () {
-            counter = counter + buttonThree;
-            console.log(counter);
-            // console.log('hello');
-        })
-        bFour.on('click', function () {
-            counter = counter + buttonFour;
-            console.log(counter);
-            // console.log('hey');
-        })
+        <script>
 
 
+            function randomNum(min, max) {
+                // Math.floor( Math.random () * (max - min + 1)) + min)
+                return Math.floor(Math.random() * (max - min + 1)) + min; //2-10
+            }
+
+            // var x = randomNum(2,12); // save result
+            //Each crystal needs to have a random number between 2-12
+            var buttonOne = randomNum(2, 12);
+            var buttonTwo = randomNum(2, 12);
+            var buttonThree = randomNum(2, 12);
+            var buttonFour = randomNum(2, 12);
+
+            //Computer randoms number between 19 - 120 at the start of the game
+            var comRandomNumber = randomNum(19, 120);
+
+            console.log("buttonOne", buttonOne);
+            console.log("buttonTwo", buttonTwo);
+            console.log("buttonThree", buttonThree);
+            console.log("buttonFour", buttonFour);
+            console.log(comRandomNumber);
+
+            var bOne = $('button').eq(0);
+            var bTwo = $('button').eq(1);
+            var bThree = $('button').eq(2);
+            var bFour = $('button').eq(3);
+
+            var counter = 0;
+            
+            //Player starts random number when they cilcks the button
+            bOne.on('click', function () {
+
+                counter = counter + buttonOne;
+                console.log(counter);
+                // console.log('hi');
+            })
+
+            bTwo.on('click', function () {
+                counter = counter + buttonTwo;
+                console.log(counter);
+                // console.log('bye');
+            })
+
+            bThree.on('click', function () {
+                counter = counter + buttonThree;
+                console.log(counter);
+                // console.log('hello');
+            })
+            bFour.on('click', function () {
+                counter = counter + buttonFour;
+                console.log(counter);
+                // console.log('hey');
+            })
+
+            var wins = 0;
+            var losses = 0;
+            $('#wins').text(wins);
+            $('#losses').text(losses);
+
+          $('img').on('click', function(){
+              var dataType = $(this).attr('data-type');
+              console.log(dataType)
+          })  
         // $('#button-1').on('click', function() {
         //     counter = counter + buttonOne;
         //     console.log(counter);
@@ -96,7 +141,20 @@
         //     console.log(counter);
         // });
 
-    </script>
+        
+        //When clicking any crystals, it should adding with the previuos result 
+        //until it is equals the random result
+
+        //If it is greater than the random result, we decrease a lost counter
+
+        //If it is equal, then we increase a win counter
+
+        //a new random number should be generate every single time we win or lost
+
+
+
+
+        </script>
 </body>
 
 </html>

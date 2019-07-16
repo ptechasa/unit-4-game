@@ -1,6 +1,8 @@
 //player random number at the start of the game
 // Math.floor( Math.random () * (max - min + 1)) + min)
 
+
+
 function randomNum(min, max) {
     // return Math.floor( Math.random()*(12-1+1) ) +1 ; 1-12
     // return Math.floor( Math.random()*(12-2+1) ) +2 ; 2-12
