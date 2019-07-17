@@ -33,7 +33,9 @@
         </div>
 
         <div id="diamondImg">
-            <div class="col-sm-12 text-center">
+            <p>Number to guess: <span class="numberToGuess"></span></p>
+
+            <div class="col-sm-12 text-center crystals">
                 <img src="https://lh3.googleusercontent.com/V1phnhdIFxAMij69-4BuBmGHbFico0DzeWdN6Zl8OElsfGRGCx_5GYwNdLswdNKeaWHph_-dpRTfdTWuP4EMvzLafixa3SrZEfEEfaHXgehvB-s3fQXcM74DuwhddDPn2brvqGLnuA=s308-p-k"
                     class="border border-primary img-responsive" alt="diamondBlue" data-type="blue">
                 <img src="https://lh3.googleusercontent.com/Rb7hyTsPFKgXBSmaqVO658QjU1ZKF6xz0TLgimY3ihNx_B-YHXEHWeU7txhSybtAWbhP3Oj-4Jl8FpHj7RCUNHF4MHh3x44PtDO7DTA2fDxCVnOtG07rN9bEVU2iqxnjq8MCV8giZA=s308-p-k"
@@ -53,91 +55,118 @@
         <button id="button-3">third</button>
         <button id="button-4">four</button>
     </div>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-        <script>
+    <script>
+        var numToGuess;
 
+        function randomNumberGenerator(min, max) {
+            // Math.floor( Math.random () * (max - min + 1)) + min)
+            return Math.floor(Math.random() * (max - min + 1)) + min; //2-10
+        }
 
-            function randomNum(min, max) {
-                // Math.floor( Math.random () * (max - min + 1)) + min)
-                return Math.floor(Math.random() * (max - min + 1)) + min; //2-10
+        function start() {
+            numToGuess = randomNumberGenerator(19, 120);
+
+            var crystals = [];
+            for (var i = 0; i < 4; i++) {
+                crystals.push(randomNumberGenerator(1, 12));
             }
+            console.log(crystals);
+        }
 
-            // var x = randomNum(2,12); // save result
-            //Each crystal needs to have a random number between 2-12
-            var buttonOne = randomNum(2, 12);
-            var buttonTwo = randomNum(2, 12);
-            var buttonThree = randomNum(2, 12);
-            var buttonFour = randomNum(2, 12);
+        function render() {
+            $('.numberToGuess').text(numToGuess);
+        }
 
-            //Computer randoms number between 19 - 120 at the start of the game
-            var comRandomNumber = randomNum(19, 120);
+        $('.crystals img').on('click', function(){
+            var val = $(this).attr('data-type');
+            console.log(val);
+          
+        })
+        start()
+        render()
 
-            console.log("buttonOne", buttonOne);
-            console.log("buttonTwo", buttonTwo);
-            console.log("buttonThree", buttonThree);
-            console.log("buttonFour", buttonFour);
-            console.log(comRandomNumber);
 
-            var bOne = $('button').eq(0);
-            var bTwo = $('button').eq(1);
-            var bThree = $('button').eq(2);
-            var bFour = $('button').eq(3);
 
-            var counter = 0;
 
-            //Player starts random number when they cilcks the button
-            bOne.on('click', function () {
 
-                counter = counter + buttonOne;
-                console.log(counter);
-                // console.log('hi');
-            })
+        // var x = randomNum(2,12); // save result
+        //Each crystal needs to have a random number between 2-12
+        // var buttonOne = randomNum(2, 12);
+        // var buttonTwo = randomNum(2, 12);
+        // var buttonThree = randomNum(2, 12);
+        // var buttonFour = randomNum(2, 12);
 
-            bTwo.on('click', function () {
-                counter = counter + buttonTwo;
-                console.log(counter);
-                // console.log('bye');
-            })
+        //Computer randoms number between 19 - 120 at the start of the game
+        // var comRandomNumber = randomNum(19, 120);
 
-            bThree.on('click', function () {
-                counter = counter + buttonThree;
-                console.log(counter);
-                // console.log('hello');
-            })
-            bFour.on('click', function () {
-                counter = counter + buttonFour;
-                console.log(counter);
-                // console.log('hey');
-            })
+        // console.log("buttonOne", buttonOne);
+        // console.log("buttonTwo", buttonTwo);
+        // console.log("buttonThree", buttonThree);
+        // console.log("buttonFour", buttonFour);
+        // console.log(comRandomNumber);
 
-            var wins = 0;
-            var losses = 0;
-            $('#wins').text(wins);
-            $('#losses').text(losses);
+        // var bOne = $('button').eq(0);
+        // var bTwo = $('button').eq(1);
+        // var bThree = $('button').eq(2);
+        // var bFour = $('button').eq(3);
 
-            $('img').on('click', function () {
-                var dataType = $(this).attr('data-type');
-                console.log(dataType)
-            })
+        // var counter = 0;
+
+        //Player starts random number when they cilcks the button
+        // bOne.on('click', function () {
+
+        //     counter = counter + buttonOne;
+        //     console.log(counter);
+        //     // console.log('hi');
+        // })
+
+        // bTwo.on('click', function () {
+        //     counter = counter + buttonTwo;
+        //     console.log(counter);
+        //     // console.log('bye');
+        // })
+
+        // bThree.on('click', function () {
+        //     counter = counter + buttonThree;
+        //     console.log(counter);
+        //     // console.log('hello');
+        // })
+        // bFour.on('click', function () {
+        //     counter = counter + buttonFour;
+        //     console.log(counter);
+        //     // console.log('hey');
+        // })
+
+        // var wins = 0;
+        // var losses = 0;
+        // $('#wins').text(wins);
+        // $('#losses').text(losses);
+
+
+        // $('img').on('click', function () {
+        //     var dataType = $(this).attr('data-type');
+        //     console.log(dataType)
+        // })
         // $('#button-1').on('click', function() {
         //     counter = counter + buttonOne;
         //     console.log(counter);
         // });
 
         // $('#button-2').on('click', function() {
-        //     ounter = counter + buttonTwo;
+        //     counter = counter + buttonTwo;
         //     console.log(counter);
         // });
 
         // $('#button-3').on('click', function() {
-        //     ounter = counter + buttonThree;
+        //     counter = counter + buttonThree;
         //     console.log(counter);
         // });
 
         // $('#button-4').on('click', function() {
-        //     ounter = counter + buttonFour;
+        //     counter = counter + buttonFour;
         //     console.log(counter);
         // });
 
@@ -154,7 +183,7 @@
 
 
 
-        </script>
+    </script>
 </body>
 
 </html>
