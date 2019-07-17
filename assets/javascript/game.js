@@ -1,54 +1,65 @@
-//player random number at the start of the game
-// Math.floor( Math.random () * (max - min + 1)) + min)
+var numToGuess;
+var total;
+var crystals;
+var wins = 0;
+var losses = 0;
 
-
-
-function randomNum(min, max) {
-    // return Math.floor( Math.random()*(12-1+1) ) +1 ; 1-12
-    // return Math.floor( Math.random()*(12-2+1) ) +2 ; 2-12
+function randomNumberGenerator(min, max) {
+    // Math.floor( Math.random () * (max - min + 1)) + min)
     return Math.floor(Math.random() * (max - min + 1)) + min; //2-10
 }
 
-// var x = randomNum(2,12); // save result
-var buttonOne = randomNum(2, 12);
-var buttonTwo = randomNum(2, 12);
-var buttonThree = randomNum(2, 12);
-var buttonFour = randomNum(2, 12);
-var guessNumber = randomNum(19, 120);
+function start() {
+    numToGuess = randomNumberGenerator(19, 120);
+    total = 0;
 
-console.log("buttonOne", buttonOne);
-console.log("buttonTwo", buttonTwo);
-console.log("buttonThree", buttonThree);
-console.log("buttonFour", buttonFour);
-console.log(guessNumber);
+    //Each crystal has a random hidden value between 1 - 12
+    crystals = [];
+    for (var i = 0; i < 4; i++) {
+        crystals.push(randomNumberGenerator(1, 12));
+    }
+    console.log(crystals);
+}
 
-var bOne = $('button').eq(0);
-var bTwo = $('button').eq(1);
-var bThree = $('button').eq(2);
-var bFour = $('button').eq(3);
+function render() {
+    $('.numberToGuess').text(numToGuess);
+    $('.totalScore').text(total);
+    $('.wins').text(wins);
+    $('.losses').text(losses);
+}
 
-var counter = 0;
+//When the player clicks on a crystal, it will add a specific amount of points to the player's total score. 
+$('.crystals img').on('click', function () {
+    var val = $(this).attr('data-type');
+    // console.log(crystals[val]);
 
-bOne.on('click', function () {
+    total += crystals[val]
+    console.log(total);
+    render()
 
-    counter = counter + buttonOne;
-    console.log(counter);
-    // console.log('hi');
+    //player wins if their total score matches the random number
+    if (total === numToGuess) {
+        console.log('Win!!')
+        wins++;
+        //game restarts whenever the player wins
+        start()
+        render()
+
+        //player loses if their score goes above the random number  
+    } else if (total > numToGuess) {
+        console.log('You lose, Try it again!!')
+        losses++;
+        //game restarts whenever the player losses
+        start();
+        render()
+    }
 })
 
-bTwo.on('click', function () {
-    counter = counter + buttonTwo;
-    console.log(counter);
-    // console.log('bye');
-})
+//sound will play when clicking on crystals
+function play() {
+    var audio = document.getElementById('audio');
+    audio.play();
+}
 
-bThree.on('click', function () {
-    counter = counter + buttonThree;
-    console.log(counter);
-    // console.log('hello');
-})
-bFour.on('click', function () {
-    counter = counter + buttonFour;
-    console.log(counter);
-    // console.log('hey');
-})
+start()
+render()
