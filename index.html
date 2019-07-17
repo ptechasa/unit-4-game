@@ -34,16 +34,16 @@
 
         <div id="diamondImg">
             <p>Number to guess: <span class="numberToGuess"></span></p>
-
+            <p>Total score is: <span class="totalScore"></span></p>
             <div class="col-sm-12 text-center crystals">
                 <img src="https://lh3.googleusercontent.com/V1phnhdIFxAMij69-4BuBmGHbFico0DzeWdN6Zl8OElsfGRGCx_5GYwNdLswdNKeaWHph_-dpRTfdTWuP4EMvzLafixa3SrZEfEEfaHXgehvB-s3fQXcM74DuwhddDPn2brvqGLnuA=s308-p-k"
-                    class="border border-primary img-responsive" alt="diamondBlue" data-type="blue">
+                    class="border border-primary img-responsive" alt="diamondBlue" data-type="0">
                 <img src="https://lh3.googleusercontent.com/Rb7hyTsPFKgXBSmaqVO658QjU1ZKF6xz0TLgimY3ihNx_B-YHXEHWeU7txhSybtAWbhP3Oj-4Jl8FpHj7RCUNHF4MHh3x44PtDO7DTA2fDxCVnOtG07rN9bEVU2iqxnjq8MCV8giZA=s308-p-k"
-                    class="border border-success img-responsive" alt="diamondGreen" data-type="green">
+                    class="border border-success img-responsive" alt="diamondGreen" data-type="1">
                 <img src="https://lh3.googleusercontent.com/YKHRPXM-7BZfhUvWEzb6MdLCRVFmS9U16J7bWAsCg3E0B_uX0jUjt2rFt8ku17te3YlothpJjmuen63fgh4jIUeh4q3MttLocRlJRwHOisjdv7EyL2VuGdNLzYFFrQZR12soonAi8A=s308-p-k"
-                    class="border border-warning img-responsive" alt="diamondYellow" data-type="yellow">
+                    class="border border-warning img-responsive" alt="diamondYellow" data-type="2">
                 <img src="https://lh3.googleusercontent.com/bwIYxk7iOHb52EuVHft0KOzmHBNljp0XTgcby8GG_RMwuBsjXXN53ok5W7xHTKdeTJbi9CxR9_rfWUPNYv31hGB8sDkEn_a__3P_tx68-dXzMcfPAFvWw1GFH7qbrtwQWW_McFE5Cw=s308-p-k"
-                    class="border border-secondary img-responsive" alt="diamondViolet" data-type="violet">
+                    class="border border-secondary img-responsive" alt="diamondViolet" data-type="3">
             </div>
             <p>Wins: <span id="wins"></span></p>
             <p>Losses: <span id="losses"></span></p>
@@ -60,6 +60,8 @@
 
     <script>
         var numToGuess;
+        var total;
+        var crystals;
 
         function randomNumberGenerator(min, max) {
             // Math.floor( Math.random () * (max - min + 1)) + min)
@@ -68,8 +70,9 @@
 
         function start() {
             numToGuess = randomNumberGenerator(19, 120);
+            total = 0 
 
-            var crystals = [];
+            crystals = [];
             for (var i = 0; i < 4; i++) {
                 crystals.push(randomNumberGenerator(1, 12));
             }
@@ -78,12 +81,17 @@
 
         function render() {
             $('.numberToGuess').text(numToGuess);
+            $('.totalScore').text(total);
         }
 
-        $('.crystals img').on('click', function(){
+        $('.crystals img').on('click', function () {
             var val = $(this).attr('data-type');
-            console.log(val);
-          
+            // console.log(crystals[val]);
+
+            total += crystals[val]
+            console.log(total)
+            render()
+            
         })
         start()
         render()
